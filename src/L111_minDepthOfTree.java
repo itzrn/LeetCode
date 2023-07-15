@@ -12,18 +12,6 @@ import java.util.Queue;
  *     The number of nodes in the tree is in the range [0, 105].
  *     -1000 <= Node.val <= 1000
  */
-class Node{
-    int data;
-    Node right;
-    Node left;
-
-    Node(int data){
-        this.data = data;
-        right = null;
-        left = null;
-    }
-}
-
 
 public class L111_minDepthOfTree {
     /*
@@ -35,7 +23,7 @@ public class L111_minDepthOfTree {
        In the above situation, means the current node is not leaf node means 1 depth get increase,
        at this point we have not to find the minimum, but we have to move as normal dfs
      */
-    public int minDepthUsingDFS(Node root){
+    public int minDepthUsingDFS(TreeNode root){
         if(root == null){
             return 0;
         }
@@ -47,18 +35,18 @@ public class L111_minDepthOfTree {
         return 1 + Math.min(minDepthUsingDFS(root.left), minDepthUsingDFS(root.right)); // this is dfs with taking min of right and left(without above if else condition)
     }
 
-    public int minDepthUsingBFS(Node root){
+    public int minDepthUsingBFS(TreeNode root){
         if(root == null){
             return 0;
         }
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         int i = 1;
 
         while (!queue.isEmpty()){//this loop is iterating till the queue won't get empty
             int q = queue.size();
             while (q>0){// this loop is iterating equal to the number of nodes present in every level
-                Node node = queue.remove();
+                TreeNode node = queue.remove();
                 if(node.right == null && node.left == null) {
                     return i;
                 }
