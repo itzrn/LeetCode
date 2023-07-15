@@ -7,6 +7,7 @@ public class L863_AllNodesAtDistanceK {
     List<Integer> list = new LinkedList<>(); // this list is storing all the value at the distance k from the target node
     public void afterGettingNode(TreeNode node, int k){
         /*
+        this always do dfs search
         this fun taking a node and k, means it will search all the nodes at the distance k from the target node
          */
         if(node == null || k < 0){
@@ -19,6 +20,7 @@ public class L863_AllNodesAtDistanceK {
         afterGettingNode(node.right,k-1);
     }
     boolean check = false; // check is used to make notify that the target node got ot not
+    // before checking getting true the search will be dfs and after check getting true it will follow backtracking
     public int distanceAtK(TreeNode root, TreeNode target, int k){
         /*
         this fun work as simple dfs before getting the target node,
