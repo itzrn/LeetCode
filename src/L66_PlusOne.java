@@ -25,4 +25,34 @@ public class L66_PlusOne {
         newNum[0]=1;
         return newNum;
     }
+
+    public int[] plusOne1(int[] A) {
+        int count=0;
+        for(int i=0;i<A.length;i++){ // let if in the starting indexes, there are 0's then we have to remove those o's for valid integer
+            if(A[i] == 0){
+                count++;
+            }else{
+                break;
+            }
+        }
+        if(count>0){  // if we have any number of 0's in starting, then we will make a new array, and put those valid element in the array
+            int[] arr = new int[A.length-count];
+            for(int i = 0;i<arr.length;i++){
+                arr[i] = A[count];
+                count++;
+            }
+            A = arr;
+        }
+        for(int i = A.length-1;i>=0;i--){
+            if(A[i] <=8){
+                A[i] = A[i] + 1;
+                return A;
+            }else{
+                A[i] = 0;
+            }
+        }
+        int[] arr = new int[A.length+1];
+        arr[0] = 1;
+        return arr;
+    }
 }
