@@ -22,7 +22,7 @@ package src;
 
 public class L83_RemoveDuplicatesFromSortedList {
 
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode deleteDuplicates(ListNode head) { // this takes 0ms
         if(head == null){
             return null;
         }
@@ -37,5 +37,21 @@ public class L83_RemoveDuplicatesFromSortedList {
         }
 
         return head; // returning the head of the list
+    }
+
+    public ListNode deleteDuplicates1(ListNode head) { // using recursion, this takes 25ms
+        if(head == null){
+            return null;
+        }
+        if(head.next == null){
+            return head;
+        }
+
+        ListNode temp = deleteDuplicates(head.next);
+        System.out.println(temp.val);
+        if(head.val == temp.val){
+            head.next = temp.next;
+        }
+        return head;
     }
 }
