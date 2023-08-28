@@ -13,14 +13,6 @@ package src;
  * Explanation: 342 + 465 = 807.
  */
 public class L2_AddTwoNumbers {
-    static class ListNode{
-        int val;
-        ListNode next;
-        ListNode(int val){
-            this.val = val;
-            next = null;
-        }
-    }
     ListNode resultHead;
 
     public void add(int val){//adding node at the end of the LinkedList
@@ -76,5 +68,51 @@ public class L2_AddTwoNumbers {
         }
         add(sum);
         return addTwoNumbers(l1.next,l2.next);
+    }
+
+    public ListNode addTwoNumbersUsingRecursion(ListNode l1, ListNode l2) {  // this is the recursive way to solve the problem
+        return recursionSum(l1,l2,null,0);
+    }
+
+    public ListNode recursionSum(ListNode l1, ListNode l2, ListNode res, int carry){ // here three cases can arise
+        if(l1 == null && l2 == null){  // case 1
+            if(carry == 1){
+                return new ListNode(carry);
+            }
+            return res;
+        }else if(l1 == null){ // case 2
+            if(l2.val + carry >9){// if the sum is greater than 9,
+                // then on every recursion we have to add carry 1, or we have to add carry 1 to every recursion till at a particular recursion sum won't get <=9
+                res = new ListNode(l2.val+carry-10);
+                carry = 1;
+                res.next = recursionSum(l1,l2.next,res.next,carry);
+                return res;
+            }else{ // this says that if the sum is not greater than 9, then add the remaining nodes of l2 to res
+                l2.val = l2.val+carry;
+                return l2;
+            }
+
+        }else if(l2 == null){ // case 3
+            if(l1.val + carry > 9){ // if the sum is greater than 9,
+                // then on every recursion we have to add carry 1, or we have to add carry 1 to every recursion till at a particular recursion sum won't get <=9
+                res = new ListNode(l1.val+carry-10);
+                carry = 1;
+                res.next = recursionSum(l1.next, l2,res.next,carry);
+                return res;
+            }else{ // this says that if the sum is not greater than 9, then add the remaining nodes of l1 to res
+                l1.val = l1.val+carry;
+                return l1;
+            }
+        }else{ // case 4 -> this case says, when both l1 and l2 have value
+            if(l1.val+l2.val+carry>9){
+                res = new ListNode(l1.val+l2.val+carry-10);
+                carry = 1;
+            }else{
+                res = new ListNode(l1.val + l2.val + carry);
+                carry = 0;
+            }
+            res.next = recursionSum(l1.next,l2.next,res.next,carry);
+            return res;
+        }
     }
 }
