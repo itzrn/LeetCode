@@ -69,21 +69,21 @@ public class L2483_MinimumPenaltyForAShop {
 
         int resi=0; // this is hour index
 
-        int i = 1;
+        int i = 1; // this i is getting use in the future , after completing the for loop so, initialized outside the for loop
         for(;i<customers.length();i++){ // here 4 cases will arise
             if(customers.charAt(i-1) == 'Y' && customers.charAt(i) == 'Y'){ // case 1
                 if(res>sumY-1+sumN){ // if penalty is grater than the current penalty
                     res = sumY - 1 + sumN; // then change the penalty
-                    resi = i; // change the hour index of the lowes penalty
+                    resi = i; // change the hour index of the lowest penalty
                 }
                 sumY -= 1;
             }else if(customers.charAt(i-1) == 'Y' && customers.charAt(i) == 'N'){ // case 2
-                if(res>sumY-1+sumN){
-                    res = sumY - 1 + sumN;
-                    resi = i;
+                if(res>sumY-1+sumN){ // if penalty is grater than the current penalty
+                    res = sumY - 1 + sumN; // then change the penalty
+                    resi = i; // change the hour index of the lowest penalty
                 }
-                sumY -= 1;
-                sumN += 1;
+                sumY -= 1; // then decreasing sumY by 1, bcz all the indexes before this present index for Y there will be no penalty
+                sumN += 1; // increasing sumN by 1, bcz we reached the index where which have N
             }else if(customers.charAt(i-1) == 'N' && customers.charAt(i) == 'Y'){ // case 3
                 if(res>sumY + sumN){
                     res = sumY + sumN;
