@@ -1,5 +1,34 @@
 package src;
 
+/**
+ * Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
+ *
+ * k is a positive integer and is less than or equal to the length of the linked list.
+ * If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+ *
+ * You may not alter the values in the list's nodes, only nodes themselves may be changed.
+ *
+ *
+ *
+ * Example 1:
+ *
+ *
+ * Input: head = [1,2,3,4,5], k = 2
+ * Output: [2,1,4,3,5]
+ * Example 2:
+ *
+ *
+ * Input: head = [1,2,3,4,5], k = 3
+ * Output: [3,2,1,4,5]
+ *
+ *
+ * Constraints:
+ *
+ * The number of nodes in the list is n.
+ * 1 <= k <= n <= 5000
+ * 0 <= Node.val <= 1000
+ */
+
 public class L25_ReverseNodeInKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
         if(k == 1 || head == null){ // keeping the base case, if k=1 no need of any reverse, bcz reversing of length k=1 node doesn't mean anything
