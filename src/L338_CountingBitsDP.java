@@ -39,4 +39,18 @@ public class L338_CountingBitsDP {
         }
         return dp;
     }
+
+    public int[] countBits3(int n) { // using DP
+        int[] dp = new int[n+1];
+        dp[0] = 0;
+        for(int i = 1;i<=n;i++){
+            if(i%2 == 0){ // on observation, we can find that if 'i' is even then the number of '1' in its binary
+                // form will be equal to the number of '1' in the binary form of 'i/2'
+                dp[i] = dp[i/2];
+            }else{ // if 'i' is odd then, then the number of'1' in its binary form will be equal to the number of '1' in the binary form of 'i/2' + 1
+                dp[i] = dp[i/2] + 1;
+            }
+        }
+        return dp;
+    }
 }
