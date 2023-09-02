@@ -42,7 +42,7 @@ public class L24_SwapNodesInPairs {
 
     // parameter 'a' is specially used to check the total number of nodes is odd or even, and also helping in reversing the pairs and identifying
     // the head of the pairs before and after the reverse of the pair
-    
+
     public ListNode swapPairs(ListNode head, int a){ // taking 'a' to identify the compiler, the node have a=1 means we have to reverse the node with its following node
         // and returning head of reverse pair,
         // when a == 2 means, connect the next pointer of the head node to the head of reversed head(temp1) so not to lose the following node
