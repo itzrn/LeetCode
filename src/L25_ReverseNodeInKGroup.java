@@ -35,7 +35,7 @@ public class L25_ReverseNodeInKGroup {
             return head;
         }
 
-        ListNode curr = head; // keeping the head in curr variable, bcz to reverse I have to give the stating node and end node, and here this head node will get lost in future
+        ListNode curr = head; // keeping the head in curr variable, bcz to reverse I have to give the starting node and end node, and here this head node will get lost in future
         int a=k; // taking 'a', to retrieve the value of k
         while(a>1){ // this loop is to find the end node, mean the kth node to reverse the list from 1 to k
             if(head.next == null && k>1){
@@ -44,7 +44,7 @@ public class L25_ReverseNodeInKGroup {
             head = head.next;
             a--;
         }
-        ListNode temp = head.next; // keeping the head.nest in temp, bcz for next k node I need start and end node to reverse
+        ListNode temp = head.next; // keeping the head.next in temp, bcz for next k node I need, start and end node to reverse
         ListNode curr1 = reverse(curr, head); // reversing some part of the list
         ListNode curr2 = reverseKGroup(temp,k); // this doing recursion, which returns the head of the reversed list to the previously reversed list emd node
         curr.next = curr2; // as we know this curr node on reverse will come at the end, and this node has to get connect with the starting node of the future k reversed node
