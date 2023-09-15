@@ -2,6 +2,7 @@ package src;
 
 public class L63_UniquePathTwo {
 
+    // this is iterative approach
     public int uniquePathWithObstacles1(int[][] obstacleGrid){ // this is the grid method
         int xlen = obstacleGrid.length;  // number of rows
         int ylen = obstacleGrid[0].length;  // number of columns
@@ -51,7 +52,6 @@ public class L63_UniquePathTwo {
         }
         return path(obstacleGrid,0,0,xlen, ylen);
     }
-
     public int path(int[][] arr, int x, int y, int xlen, int ylen){
         if(x == xlen-1 && y == ylen-1){
             return 1;
@@ -67,5 +67,46 @@ public class L63_UniquePathTwo {
         int right = path(arr,x,y+1, xlen, ylen);
 
         return bottom + right;
+    }
+
+
+    // this is dfs + dp, which is optimal
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        if(obstacleGrid[0][0] == 1 || obstacleGrid[obstacleGrid.length-1][obstacleGrid[0].length-1] == 1){
+            return 0;
+        }
+
+        for(int i = 0;i<obstacleGrid.length; i++){ // doing every 1 as -1, for our further process, -1 will be the obstacles
+            for(int j = 0;j<obstacleGrid[i].length;j++){
+                if(obstacleGrid[i][j] == 1){
+                    obstacleGrid[i][j] = -1;
+                }
+            }
+        }
+
+        return recursiveDp(obstacleGrid, 0, 0, obstacleGrid.length-1,obstacleGrid[0].length-1);
+    }
+
+    public int recursiveDp(int[][] dp, int x, int y, int m, int n){
+        if( x > m || y > n){
+            return 0;
+        }
+        if(x == m && y == n){
+            dp[x][y] = 1;
+            return dp[x][y];
+        }
+        if(dp[x][y] == -1){
+            return 0;
+        }
+        if(dp[x][y] != 0){
+            return dp[x][y];
+        }
+        int a = recursiveDp(dp, x, y+1, m, n);
+        int b = recursiveDp(dp, x+1, y, m, n);
+
+        dp[x][y] = a + b;
+
+        // dp[x][y] = recursiveDp(dp,x,y+1,m,n) + recursiveDp(dp,x+1,y,m,n);
+        return dp[x][y];
     }
 }

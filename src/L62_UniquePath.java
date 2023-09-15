@@ -86,6 +86,29 @@ public class L62_UniquePath {
         dp[m][n] = recursiveDp(dp,m-1,n) + recursiveDp(dp,m,n-1); // calculating the number of unique path, when starting from 1,1 to m,n
         return dp[m][n]; // returning the unique path for m,n staring from 1,1
     }
+
+    public int uniquePaths4(int m, int n) { // new way I thought, slight change
+        int[][] dp = new int[m+1][n+1];
+        dp[1][1] = 1;
+        return recursion(dp, m, n);
+    }
+
+    public int recursion(int[][] dp, int m, int n){
+        if(m == 0 || n == 0){
+            return 0;
+        }
+
+        if(dp[m][n] != 0){
+            return dp[m][n];
+        }
+
+        int a = recursion(dp, m-1, n);
+        int b = recursion(dp, m, n-1);
+
+        dp[m][n] = a + b;
+
+        return dp[m][n];
+    }
 }
 
 /*
