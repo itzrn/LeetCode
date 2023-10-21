@@ -51,4 +51,27 @@ public class L209_MinimumSizeSubArraySum {
         return (min != Integer.MAX_VALUE) ? min : 0;
         // if the ternary condition gets false, mean the sum of all the element of array is less than the target value.
     }
+
+    // using Sliding window
+    public int minSubArrayLen1(int target, int[] nums) {
+        int left = 0;
+        int right = 0;
+        int sum = nums[0];
+        int min = Integer.MAX_VALUE;
+
+        while(right<nums.length){
+            if(sum >= target){
+                min = Math.min(min, right-left+1);
+                sum -= nums[left];
+                left++;
+            }else {
+                right++;
+                if(right!=nums.length){
+                    sum += nums[right];
+                }
+            }
+        }
+
+        return (min != Integer.MAX_VALUE)?min:0;
+    }
 }

@@ -33,4 +33,27 @@ public class L119_PascalTriangleTwo {
 
         return queue.remove();
     }
+
+    // another approach using array
+    public List<Integer> getRow1(int rowIndex) {
+        int[] res = {1};
+
+        for(int i = 0;i<rowIndex;i++){
+            int[] next_row = new int[res.length+1];
+            for(int j = 0;j<res.length;j++){
+                next_row[j] += res[j];
+                next_row[j+1] += res[j];
+            }
+
+            res = next_row;
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for(int i:res){
+            list.add(i);
+        }
+
+
+        return list;
+    }
 }
