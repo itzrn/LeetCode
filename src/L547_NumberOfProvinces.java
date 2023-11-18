@@ -1,5 +1,8 @@
 package src;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * There are n cities. Some of them are connected, while some are not. If city a is connected directly with city b, and city b is connected directly with city c, then city a is connected indirectly with city c.
  *
@@ -53,6 +56,22 @@ public class L547_NumberOfProvinces {
         for(int i=0;i<arr.length;i++){
             if(!visited[i] && arr[start][i] == 1){
                 dfs(i, arr, visited);
+            }
+        }
+    }
+
+    public void bfs(int start, int[][] arr, boolean[] visited){
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        visited[start] = true;
+
+        while(!queue.isEmpty()){
+            int a = queue.poll();
+            for(int i=0;i<arr[a].length;i++){
+                if(!visited[i] && arr[a][i] == 1){
+                    queue.add(i);
+                    visited[i] = true;
+                }
             }
         }
     }
