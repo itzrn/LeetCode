@@ -31,10 +31,10 @@ package src;
  * -104 <= matrix[i][j], target <= 104
  */
 
-public class L74_L240_SearchA2DMatrix {
+public class L74_SearchA2DMatrix {
     public boolean searchMatrix(int[][] matrix, int target) {
-        for(int i = 0;i<matrix.length;i++){ // iterating to ever matrix
-            if(binarySearch(matrix[i],0,matrix[i].length-1,target)){ // searching target value in every matrix
+        for(int i = 0;i<matrix.length;i++){
+            if(binarySearch(matrix[i],0,matrix[i].length-1,target)){
                 return true;
             }
         }
