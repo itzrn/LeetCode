@@ -25,6 +25,9 @@ package src;
  */
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class L347_TopKFrequentElements {
     public int[] topKFrequent(int[] nums, int k) {
@@ -77,5 +80,32 @@ public class L347_TopKFrequentElements {
         arr[i] = arr[high];
         arr[high] = temp;
         return i;
+    }
+
+
+
+    // using priorityQueue
+    public int[] topKFrequent1(int[] nums, int k) {
+        Map<Integer, int[]> map = new HashMap<>();
+
+        for(int i:nums){
+            if(!map.containsKey(i)){
+                map.put(i, new int[]{i, 0});
+            }
+            map.get(i)[1]++;
+        }
+
+        Queue<int[]> pq = new PriorityQueue<>((a, b)->b[1]-a[1]);
+        pq.addAll(map.values());
+
+        int[] ans = new int[k];
+        int i = 0;
+        while(i<k){
+            assert !pq.isEmpty();
+            ans[i] = pq.poll()[0];
+            i++;
+        }
+
+        return ans;
     }
 }
