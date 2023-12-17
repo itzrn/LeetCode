@@ -1,6 +1,8 @@
 package src;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -52,5 +54,56 @@ public class L3_LongestSubstringWithoutRepeatingCharacters {
         }
         i++;
         return lengthOfLongestSubstring(s);
+    }
+
+    LinkedList<Character> list = new LinkedList<>();
+    int temp = 0;
+    int big = 0;
+    boolean check = false;
+    public int lengthOfLongestSubstring3(String s) {
+        if(temp == s.length()){
+            return big;
+        }
+        for(int j = temp;j<s.length();j++){
+            if(list.contains(s.charAt(j))){
+                if(big < list.size()){
+                    big = list.size();
+                }
+                list.clear();
+                break;
+            }else{
+                list.add(s.charAt(j));
+                if(big < list.size()){
+                    big = list.size();
+                }
+            }
+        }
+        temp++;
+
+        return lengthOfLongestSubstring3(s);
+    }
+
+    // this is using sliding window
+    public int lengthOfLongestSubstring2(String s) {
+        int n = s.length();
+        Map<Character, Integer> map = new HashMap<>();
+        int left = 0;
+        int max = 0;
+        int right = 0;
+        while(right < n){
+            char temp = s.charAt(right);
+            map.put(temp, map.getOrDefault(temp, 0)+1);
+
+            while(map.get(temp) > 1){
+                max = Math.max(max, right-left);
+                char t = s.charAt(left);
+                map.put(t, map.get(t)-1);
+                left++;
+            }
+            right++;
+        }
+        max = Math.max(max, right-left);
+
+        return max;
     }
 }
