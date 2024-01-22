@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Arrays;
+
 /**
  * You are a professional robber planning to rob houses along a street. Each house has a certain amount of money
  * stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security
@@ -66,5 +68,31 @@ public class L198_HouseRobber {
             }
         }
         return max;
+    }
+
+
+    // approach 2
+    public int rob2(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1);
+        return Math.max(recursion(nums, 0, n, dp), recursion(nums, 1, n, dp));
+    }
+
+    public int recursion(int[] arr, int index, int n, int[] dp){
+        if(index >= n){ // base case
+            return 0;
+        }
+
+        if(dp[index] != -1){ // using dp
+            return dp[index];
+        }
+
+        int a = 0;
+        for(int i = index+2; i<n; i+=1){ // making the graph approach
+            a = Math.max(a, recursion(arr, i, n, dp));
+        }
+
+        return dp[index] = arr[index]+a; // updating the dp and returning the value
     }
 }
