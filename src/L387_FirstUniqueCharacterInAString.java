@@ -38,4 +38,22 @@ public class L387_FirstUniqueCharacterInAString {
 
         return -1;
     }
+
+    public int firstUniqChar2(String s) { // new approach iteratin the string two times
+        int n = s.length();
+        int[] arr = new int[26];
+        char[] str = s.toCharArray();
+
+        for(char i:str){
+            arr[i-'a']++;
+        }
+
+        for(int i = 0; i<n; i++){
+            if(arr[str[i]-'a'] == 1){
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }
