@@ -37,6 +37,8 @@ package src;
  * nums consists of equal number of positive and negative integers.
  */
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class L2149_RearrangeArrayElementsBySign {
@@ -57,5 +59,30 @@ public class L2149_RearrangeArrayElementsBySign {
 
         arr[index+1] = stackN.pop();
         arr[index] = stackP.pop();
+    }
+
+    // approach 2
+    public int[] rearrangeArray2(int[] nums) {
+        Queue<Integer> posQueue =  new LinkedList<>();
+        Queue<Integer> negQueue =  new LinkedList<>();
+
+        for(int i:nums){
+            if(i<0){
+                negQueue.offer(i);
+            }else{
+                posQueue.offer(i);
+            }
+        }
+
+        int n = nums.length;
+        for(int i = 0; i<n; i++){
+            if(i%2 == 0){
+                nums[i] = posQueue.poll();
+            }else{
+                nums[i] = negQueue.poll();
+            }
+        }
+
+        return nums;
     }
 }
