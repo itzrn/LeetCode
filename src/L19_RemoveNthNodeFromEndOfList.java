@@ -45,4 +45,31 @@ public class L19_RemoveNthNodeFromEndOfList {
 
         return head;
     }
+
+
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        if(n == 1 && head.next == null){
+            return null;
+        }
+
+        ListNode curr = head;
+        int count = 0;
+        while(curr!=null){
+            count++;
+            curr = curr.next;
+        }
+        if(n == count){
+            return head.next;
+        }
+
+        n = count-n;
+        curr = head;
+        while(n>1){
+            n--;
+            curr = curr.next;
+        }
+
+        curr.next = curr.next.next;
+        return head;
+    }
 }

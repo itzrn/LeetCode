@@ -34,4 +34,9 @@ public class L1025_DivisorGame {
     public boolean divisorGame(int n) {
         return n % 2 == 0;
     }
+
+    /*
+    as we need to take any element between 0 to n, then we will take 1(which divides n and updating nto n-1) for every turn of alice and bob
+    we will find a pattern tha when n is even the alice wins else bob wins
+     */
 }

@@ -57,4 +57,35 @@ public class L917_ReverseOnlyLetters {
         }
         return queue.remove() + temp; // while back tracking, removing character from the queue, where there is no special character
     }
+
+
+    public String reverseOnlyLetters2(String s) { // iterative approach
+        char[] arr = s.toCharArray();
+        int i = 0;
+        int j = arr.length-1;
+
+        while(i<j){
+            if(!isChar(arr[i])){
+                i++;
+                continue;
+            }
+
+            if(!isChar(arr[j])){
+                j--;
+                continue;
+            }
+
+            char temp = arr[i];
+            arr[i] = arr[j];
+            arr[j]=temp;
+            i++;
+            j--;
+        }
+
+        return new String(arr);
+    }
+
+    public boolean isChar(char i){
+        return i>=65 && i<=90 || i>=97 && i<=122;
+    }
 }
