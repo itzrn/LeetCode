@@ -45,13 +45,31 @@ public class L509_FibonacciNumber {
         // means we have to reach till n number, so to store the fib(n) we need n+1 size dp
         dp[0] = 0; // initial condition 1
         dp[1] = 1; // initial condition 2
-        return recursionDp(dp)[n];
+        return iterativeDp(dp)[n];
     }
 
-    public int[] recursionDp(int[] dp){ // using dp method
+    public int[] iterativeDp(int[] dp){ // using dp method
         for(int i = 2;i<dp.length;i++){ // storing the previously calculated fib, using which we are calculating fib(i)
             dp[i] = dp[i-1]+dp[i-2];
         }
         return dp;
+    }
+
+
+    public int fib2(int n) {
+        int[] dp = new int[n+1];
+        return recursion(n, dp);
+    }
+
+    public int recursion(int n, int[] dp){ // memoization
+        if(n <= 1){
+            return n;
+        }
+
+        if(dp[n] != 0){
+            return dp[n];
+        }
+
+        return dp[n] = recursion(n-1, dp)+recursion(n-2, dp);
     }
 }

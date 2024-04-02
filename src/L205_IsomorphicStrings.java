@@ -60,4 +60,28 @@ public class L205_IsomorphicStrings {
 
         return true;
     }
+
+    public boolean isIsomorphic2(String s, String t) {
+        int n = s.length();
+        char[] arr1 = new char[128];
+        char[] arr2 = new char[128];
+
+        for(int i = 0;i<n; i++){
+            char a = s.charAt(i);
+            char b = t.charAt(i);
+            if(arr1[a] != '\u0000' && arr1[a] != b){
+                return false;
+            }
+
+            if(arr2[b] != '\u0000' && arr2[b] != a){
+                return false;
+            }
+
+            arr1[a] = b;
+            arr2[b] = a;
+
+        }
+
+        return true;
+    }
 }

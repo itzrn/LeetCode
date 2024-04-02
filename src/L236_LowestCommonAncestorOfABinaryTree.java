@@ -84,4 +84,17 @@ public class L236_LowestCommonAncestorOfABinaryTree {
 
         return root;
     }
+
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null){
+            return null;
+        }
+        if(root == p || root == q){
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestor3(root.left, p, q);
+        TreeNode  right = lowestCommonAncestor3(root.right, p, q);
+        return left != null && right != null?root:left==null?right:left;
+    }
 }

@@ -106,4 +106,30 @@ public class L3_LongestSubstringWithoutRepeatingCharacters {
 
         return max;
     }
+
+
+
+    // using array and sliding window
+    public int lengthOfLongestSubstring4(String s) {
+        // in total we have 128 character and symbol in ascii
+        // where index vary from 0 to 127
+        int[] count = new int[128];
+        char[] str = s.toCharArray();
+        int n = str.length;
+        int max = 0;
+        int x = 0;
+        int y = 0;
+        for(; y<n; y++){
+            count[str[y]]++;
+
+            while(count[str[y]]>1){
+                count[str[x]]--;
+                x++;
+            }
+
+            max = Math.max(max, y-x+1);
+        }
+
+        return max;
+    }
 }

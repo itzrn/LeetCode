@@ -23,7 +23,9 @@ package src;
  * 0 <= nums1[i], nums2[i] <= 1000
  */
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class L349_IntersectionOfTwoArrays {
@@ -45,5 +47,25 @@ public class L349_IntersectionOfTwoArrays {
         }
 
         return set2.stream().mapToInt(Integer::intValue).toArray(); // like this we can only convert numerical HashSet to its particular data type array
+    }
+
+    public int[] intersection2(int[] nums1, int[] nums2) {
+        Set<Integer> set1 = new HashSet<>();
+        for(int i:nums1){
+            set1.add(i);
+        }
+
+        Set<Integer> set2 = new HashSet<>();
+        for(int i:nums2){
+            set2.add(i);
+        }
+        List<Integer> list = new ArrayList<>();
+        for(int i:set1){
+            if(!set2.add(i)){
+                list.add(i);
+            }
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
