@@ -20,4 +20,25 @@ public class L136_SingleNumber {
         }
         return nums[nums.length-1];
     }
+
+
+    public int singleNumber2(int[] nums) {
+        /*
+        n ^ 0 = n -> that's why taking res initial as 0
+            a ^ b = 0 if a is equal to b
+                1^1 = 0
+                0^0 = 0
+                1^0 = 1
+                0^1 = 1
+
+            if a^b = c then c^a = b or c^b = a
+        */
+        int res = 0;
+        for(int i:nums){
+            res ^= i;
+            System.out.println(res);
+        }
+
+        return res;
+    }
 }
