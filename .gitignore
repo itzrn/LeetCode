@@ -17,6 +17,8 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 out
+.idea
+*.iml
 
 # Other files and folders
 .settings/
